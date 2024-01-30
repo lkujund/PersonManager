@@ -39,27 +39,12 @@ namespace PersonManager
             Frame.NavigationService.GoBack();
         }
 
-        private void BtnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            Frame?.Navigate(new ListPeopleOfSubjectPage(new PersonSubjectViewModel(subject), subject)
-            {
-                Frame = Frame
-            });
-        }
-
-        private void BtnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            if (lvPeople.SelectedItem != null)
-            {
-                PersonSubjectViewModel.People.Remove((lvPeople.SelectedItem as Person)!);
-            }
-        }
         private void BtnConfirm_Click(object sender, RoutedEventArgs e)
         {
             if (lvPeople.SelectedItem != null)
             {
                 RepositoryFactory.GetRepository().AddPersonToSubject(lvPeople.SelectedItem as Person, subject.IDSubject);
-                Frame?.Navigate(new ListPeopleOfSubjectPage(PersonSubjectViewModel)
+                Frame?.Navigate(new ListPeopleOfSubjectPage(new PersonSubjectViewModel(subject), subject)
                 {
                     Frame = Frame
                 });
