@@ -1,0 +1,53 @@
+﻿<local:FramedPage x:Class="PersonManager.EditSubjectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PersonManager"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="400"
+      Title="EditSubjectPage">
+
+    <Grid x:Name="grid"
+          Background="{StaticResource GradientBackground}">
+        <Label Content="Subject name"
+               Foreground="White"
+               
+               HorizontalAlignment="Left" Margin="35,75,0,0" VerticalAlignment="Top" Height="26" Width="81"/>
+        <TextBox 
+            x:Name="tbSubjectName"
+            Text="{Binding SubjectName}"
+            
+            HorizontalAlignment="Left" Margin="121,75,0,0" TextWrapping="Wrap"     
+            VerticalAlignment="Top" Width="179" Height="26"/>
+        <Label Content="ECTS"
+            Foreground="White"
+               
+            HorizontalAlignment="Left" Margin="35,165,0,0" VerticalAlignment="Top" Height="26" Width="81"/>
+        <TextBox 
+            x:Name="tbEcts"
+            Text="{Binding ECTS}"
+            Tag="Int"
+            
+            HorizontalAlignment="Left" Margin="250,165,0,0" TextWrapping="Wrap"     
+            VerticalAlignment="Top" Width="50" Height="26"/>
+        <Button 
+            x:Name="btnCommit"
+            Click="BtnCommit_Click"
+            Content="Commit" 
+            Foreground="White"
+            Background="Black"
+                
+            HorizontalAlignment="Center" Margin="0,260,0,0" VerticalAlignment="Top" Height="36" Width="110"/>
+        <Button 
+            x:Name="btnBack"
+            Click="BtnBack_Click"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            
+            HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="49" Width="50">
+            <Image Source="/Assets/back.png"/>
+        </Button>
+
+    </Grid>
+</local:FramedPage>

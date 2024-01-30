@@ -1,0 +1,83 @@
+﻿<local:FramedPage x:Class="PersonManager.AddPersonToSubjectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PersonManager"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="600"
+      Title="AddPersonToSubjectPage">
+
+    <Grid Background="{StaticResource GradientBackground}">
+        <ListView 
+            x:Name="lvPeople"
+            Width="500"
+            Height="300" Margin="50,60,50,90"
+            AlternationCount="2">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="MouseDoubleClick" Handler="BtnConfirm_Click" />
+                    <Setter Property="Background" Value="LightBlue" />
+                    <Style.Triggers>
+                        <Trigger Property="ListView.AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="White" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="CadetBlue" />
+                        </MultiTrigger>
+
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="126" Header="First name" 
+                                    DisplayMemberBinding="{Binding FirstName}"/>
+                    <GridViewColumn Width="126" Header="Last name" 
+                                    DisplayMemberBinding="{Binding LastName}"/>
+                    <GridViewColumn Width="126" Header="Age" 
+                                    DisplayMemberBinding="{Binding Age}"/>
+                    <GridViewColumn Width="126" Header="Email">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Email}" 
+                                         TextDecorations="Underline" Foreground="Black" Cursor="Hand">
+                                    <TextBlock.ToolTip>
+                                        <Image x:Name="picture" Source="{Binding Image}" 
+                                               Width="60"
+                                               Height="60"
+                                               />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button 
+            Content="Confirm"
+            Background="Gray"
+            Foreground="White"
+            x:Name="btnConfirm"
+            Click="BtnConfirm_Click"                
+          
+            HorizontalAlignment="Left" Margin="467,381,0,0" VerticalAlignment="Top" Width="83" Height="26"/>
+
+        <Label x:Name="lbSubject" Content="" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" Width="335"/>
+        <Button 
+            x:Name="btnBack"
+            Click="BtnBack_Click"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            
+            HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="49" Width="50">
+            <Image Source="/Assets/back.png"/>
+        </Button>
+
+    </Grid>
+</local:FramedPage>
