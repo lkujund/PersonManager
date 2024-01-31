@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Extensions.Configuration;
 
 namespace PersonManager
 {
@@ -20,13 +23,31 @@ namespace PersonManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string? connStr;
+        IConfiguration? config;
         public MainWindow()
         {
             InitializeComponent();
+            SetupBuilder();
             frame.Navigate(new ListPeoplePage(new ViewModels.PersonViewModel())
             {
                 Frame = frame
             });
+        }
+
+        private void SetupBuilder()
+        {
+
+            /* PersonManager -> Manage User Secrets
+               "ConnectionStrings": {
+                  "pppkConnString": "Server=..."
+                }
+             */
+            config = new ConfigurationBuilder()
+                .AddUserSecrets<MainWindow>()
+                .Build();
+            connStr = config.GetConnectionString("pppkConnString");
+
         }
     }
 }

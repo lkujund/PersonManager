@@ -14,7 +14,7 @@ namespace PersonManager.Dal
 {
     internal class SqlRepository : IRepository
     {
-        private static readonly string cs = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
+        private static readonly string cs = MainWindow.connStr;
 
         //
         //
